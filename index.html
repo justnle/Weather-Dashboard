@@ -28,20 +28,21 @@
               >Search for a City:</label
             >
             <div class="input-group mb-3">
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" id="search-input">
               <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  id="search-button"
+                >
                   <i class="fas fa-search"></i>
                 </button>
               </div>
             </div>
           </div>
-          <div class="col-md-12 pb-3" id="search-history">
+          <div class="col-md-12 pb-3" id="search-history-container">
             <div class="card w-100">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+              <ul class="list-group list-group-flush" id="search-history">
               </ul>
             </div>
           </div>
