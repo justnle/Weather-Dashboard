@@ -54,12 +54,17 @@
             </div>
           </div>
         </div>
-        <div class="col-md-8">
-          <div class="row justify-content-center pt-3" id="current-forecast">
+        <div class="col-md-8 pl-5">
+          <div class="row pt-3" id="current-forecast">
             <div class="col-md-10 border">
-              <div class="d-flex align-items-center pt-4" id="city-name-container">
+              <div
+                class="d-flex align-items-center pt-4"
+                id="city-name-container"
+              >
                 <h2 class="font-weight-bold" id="city-name"></h2>
-                <div id="weather-image-container"><img alt="weather-image" id="weather-image"></div>
+                <div id="weather-image-container">
+                  <img alt="weather-image" id="weather-image" />
+                </div>
               </div>
               <div class="pb-4" id="weather-container">
                 <div id="temperature"></div>
@@ -69,8 +74,52 @@
               </div>
             </div>
           </div>
-          <div class="row" id="five-day-forecast-container">
-            <div id="five-day-forecast"></div>
+          <div class="row flex-column py-3" id="five-day-forecast-container">
+            <div class="row">
+              <h4 class="font-weight-bold pl-3">5-Day Forecast:</h4>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <div class="card" id="day-1">
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="card" id="day-2">
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="card" id="day-3">
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="card" id="day-4">
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="card" id="day-5">
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
