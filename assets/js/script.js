@@ -2,6 +2,9 @@ var citySearch;
 var APIkey = '&appid=28870b55a52a06273a2463ffab2469f7';
 var weatherAPI = 'https://api.openweathermap.org/data/2.5/weather?q=';
 var uviAPI = 'https://api.openweathermap.org/data/2.5/uvi?lat=';
+var forecastAPI = 'https://api.openweathermap.org/data/2.5/forecast?q=';
+var units = '&units=imperial';
+var getWeatherIcon = 'http://openweathermap.org/img/wn/';
 var fahrenheitInt;
 
 $(document).ready(function() {
@@ -9,7 +12,7 @@ $(document).ready(function() {
 
   function init() {
     search();
-    $('#current-forecast').hide();
+    $('#weather-container').hide();
     $('#search-history-container').hide();
   }
 
@@ -41,7 +44,7 @@ $(document).ready(function() {
   }
 
   function getWeather(search) {
-    var queryURL = weatherAPI + search + APIkey;
+    var queryURL = weatherAPI + search + units + APIkey;
 
     $.ajax({
       url: queryURL,
@@ -49,24 +52,18 @@ $(document).ready(function() {
     }).then(function(response) {
       var results = response;
       var name = results.name;
-      var temperature = results.main.temp;
+      var temperature = Math.floor(results.main.temp);
       var humidity = results.main.humidity;
       var windSpeed = results.wind.speed;
-      var windSpeedMPH = windSpeed * 2.236936;
-      var windSpeedRounded = Math.round((windSpeedMPH * 10) / 10)
       var date = new Date(results.dt * 1000).toLocaleDateString('en-US');
       var weatherIcon = results.weather[0].icon;
-      var weatherIconURL =
-        'http://openweathermap.org/img/wn/' + weatherIcon + '.png';
-    
-      convertTemperature(temperature);
-      temperature = fahrenheitInt;
+      var weatherIconURL = getWeatherIcon + weatherIcon + '.png';
 
       $('#city-name').text(name + ' (' + date + ') ');
       $('#weather-image').attr('src', weatherIconURL);
       $('#temperature').html('<b>Temperature: </b>' + temperature + ' °F');
       $('#humidity').html('<b>Humidity: </b>' + humidity + '%');
-      $('#wind-speed').html('<b>Wind Speed: </b>' + windSpeedRounded + ' MPH');
+      $('#wind-speed').html('<b>Wind Speed: </b>' + windSpeed + ' MPH');
 
       console.log(results);
 
@@ -83,6 +80,56 @@ $(document).ready(function() {
         $('#uv-index').html('<b>UV Index: </b>' + uvi);
         $('#current-forecast').show();
       });
+
+      var cityName = name;
+      var countryCode = response.sys.country;
+      var forecastQueryURL =
+        forecastAPI + cityName + ',' + countryCode + units + APIkey;
+
+      $.ajax({
+        url: forecastQueryURL,
+        method: 'GET'
+      }).then(function(forecastResponse) {
+        var forecastResults = forecastResponse;
+        var forecastArr = [];
+
+        for (var i = 4; i < 40; i += 8) {
+          var forecastObj = {};
+          var forecastResultsDate = forecastResults.list[i].dt_txt;
+          var forecastDate = new Date(forecastResultsDate).toLocaleDateString(
+            'en-US'
+          );
+          var forecastTemp = forecastResults.list[i].main.temp;
+          var forecastHumidity = forecastResults.list[i].main.humidity;
+          var forecastIcon = forecastResults.list[i].weather[0].icon;
+
+          forecastObj['list'] = {};
+          forecastObj['list']['date'] = forecastDate;
+          forecastObj['list']['temp'] = forecastTemp;
+          forecastObj['list']['humidity'] = forecastHumidity;
+          forecastObj['list']['icon'] = forecastIcon;
+
+          forecastArr.push(forecastObj);
+        }
+
+        for (var j = 0; j < 5; j++) {
+          var forecastArrDate = forecastArr[j].list.date;
+          var forecastIconURL =
+            getWeatherIcon + forecastArr[j].list.icon + '.png';
+          var forecastArrTemp = Math.floor(forecastArr[j].list.temp);
+          var forecastArrHumidity = forecastArr[j].list.humidity;
+
+          $('#date-' + (j + 1)).text(forecastArrDate);
+          $('#weather-image-' + (j + 1)).attr('src', forecastIconURL);
+          $('#temp-' + (j + 1)).text(
+            'Temp: ' + Math.floor(forecastArrTemp) + ' °F'
+          );
+          $('#humidity-' + (j + 1)).text(
+            'Humidity: ' + forecastArrHumidity + '%'
+          );
+        }
+        $('#weather-container').show();
+      });
     });
   }
 
@@ -96,13 +143,5 @@ $(document).ready(function() {
 
   function clearHistory() {
     // function to clear localStorage data and also the search history <ul>
-  }
-
-  function convertTemperature(k) {
-    var kelvin = parseFloat(k);
-    var fahrenheit = ((kelvin - 273.15) * 9) / 5 + 32;
-    fahrenheitInt = Math.floor(fahrenheit);
-    var temperature = Math.floor(fahrenheit);
-    return fahrenheitInt;
   }
 });
