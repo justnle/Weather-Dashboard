@@ -55,8 +55,23 @@
           </div>
         </div>
         <div class="col-md-8">
-          <div class="row" id="current-forecast"></div>
-          <div class="row" id="five-day-forecast"></div>
+          <div class="row justify-content-center pt-3" id="current-forecast">
+            <div class="col-md-10 border">
+              <div class="d-flex align-items-center pt-4" id="city-name-container">
+                <h3 class="font-weight-bold" id="city-name"></h3>
+                <div id="weather-image"></div>
+              </div>
+              <div class="pb-4" id="weather-container">
+                <div id="temperature"></div>
+                <div id="humidity"></div>
+                <div id="wind-speed"></div>
+                <div id="uv-index"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row" id="five-day-forecast-container">
+            <div id="five-day-forecast"></div>
+          </div>
         </div>
       </div>
     </div>
