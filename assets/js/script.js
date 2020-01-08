@@ -18,6 +18,7 @@ $(document).ready(function() {
     $('#search-history-container').hide();
     $('#current-location-container').hide();
     showHistory();
+    clearHistory();
   }
 
   function search() {
@@ -251,10 +252,16 @@ $(document).ready(function() {
       $('#search-history-container').show();
     }
 
-    return searchHistoryArr = localSearchHistory;
+    return (searchHistoryArr = localSearchHistory);
   }
 
   function clearHistory() {
-    // function to clear localStorage data and also the search history <ul>
+    $('#clear-button').on('click', function() {
+      $('#search-history').empty();
+      $('#search-history-container').hide();
+      localStorage.removeItem('searchHistory');
+      searchHistoryArr.length = 0;
+      localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr));
+    });
   }
 });
