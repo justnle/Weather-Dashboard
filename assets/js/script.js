@@ -17,6 +17,7 @@ $(document).ready(function() {
     $('#weather-container').hide();
     $('#search-history-container').hide();
     $('#current-location-container').hide();
+    showHistory();
   }
 
   function search() {
@@ -238,12 +239,19 @@ $(document).ready(function() {
     }
   }
 
-  function storeHistory() {
-    //function to store history to localStorage
-  }
-
   function showHistory() {
-    // function to get localStorage data and display it
+    var getLocalSearchHistory = localStorage.getItem('searchHistory');
+    var localSearchHistory = JSON.parse(getLocalSearchHistory);
+
+    for (var i = 0; i < localSearchHistory.length; i++) {
+      var historyLi = $('<li>');
+      historyLi.addClass('list-group-item');
+      historyLi.text(capitalizeFirstLetter(localSearchHistory[i].city));
+      $('#search-history').prepend(historyLi);
+      $('#search-history-container').show();
+    }
+
+    return searchHistoryArr = localSearchHistory;
   }
 
   function clearHistory() {
