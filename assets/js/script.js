@@ -147,8 +147,6 @@ $(document).ready(function() {
         var forecastResults = forecastResponse;
         var forecastArr = [];
 
-        // fix the format of the cards as the screen changes sizes, etc. add padding
-
         for (var i = 4; i < 40; i += 8) {
           var forecastObj = {};
           var forecastResultsDate = forecastResults.list[i].dt_txt;
@@ -187,7 +185,6 @@ $(document).ready(function() {
         $('#weather-container').show();
       });
     });
-    clickHistory();
   }
 
   function currentLocation() {
@@ -258,7 +255,7 @@ $(document).ready(function() {
 
     return (searchHistoryArr = localSearchHistory);
   }
-  
+
   function createHistory() {
     searchHistoryArr.length = 0;
     localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr));
