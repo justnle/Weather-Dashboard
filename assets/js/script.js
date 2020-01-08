@@ -17,8 +17,9 @@ $(document).ready(function() {
     $('#weather-container').hide();
     $('#search-history-container').hide();
     $('#current-location-container').hide();
-    showHistory();
+    displayHistory();
     clearHistory();
+    clickHistory();
   }
 
   function search() {
@@ -100,7 +101,6 @@ $(document).ready(function() {
       $('#humidity').html('<b>Humidity: </b>' + humidity + '%');
       $('#wind-speed').html('<b>Wind Speed: </b>' + windSpeed + ' MPH');
 
-      console.log(results);
       var lat = response.coord.lat;
       var lon = response.coord.lon;
       var uviQueryURL = uviAPI + lat + '&lon=' + lon + APIkey;
@@ -146,7 +146,8 @@ $(document).ready(function() {
       }).then(function(forecastResponse) {
         var forecastResults = forecastResponse;
         var forecastArr = [];
-        console.log(forecastResults);
+
+        // fix the format of the cards as the screen changes sizes, etc. add padding
 
         for (var i = 4; i < 40; i += 8) {
           var forecastObj = {};
@@ -186,6 +187,7 @@ $(document).ready(function() {
         $('#weather-container').show();
       });
     });
+    clickHistory();
   }
 
   function currentLocation() {
@@ -230,17 +232,19 @@ $(document).ready(function() {
     }
 
     function error() {
-      console.log('Cannot get your location.');
+      $('#current-location').text('Cannot get your current location.');
     }
 
     if (!geoAPI) {
-      console.log('Geolocation is not supported by your browser.');
+      $('#current-location').text(
+        'Geolocation is not supported by your browser'
+      );
     } else {
       geoAPI.getCurrentPosition(success, error);
     }
   }
 
-  function showHistory() {
+  function displayHistory() {
     var getLocalSearchHistory = localStorage.getItem('searchHistory');
     var localSearchHistory = JSON.parse(getLocalSearchHistory);
 
@@ -262,6 +266,13 @@ $(document).ready(function() {
       localStorage.removeItem('searchHistory');
       searchHistoryArr.length = 0;
       localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr));
+    });
+  }
+
+  function clickHistory() {
+    $('#search-history li').on('click', function() {
+      var cityNameHistory = $(this).text();
+      getWeather(cityNameHistory);
     });
   }
 });
