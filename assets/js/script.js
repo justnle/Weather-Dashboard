@@ -5,7 +5,7 @@ var uviAPI = 'https://api.openweathermap.org/data/2.5/uvi?lat=';
 var forecastAPI = 'https://api.openweathermap.org/data/2.5/forecast?q=';
 var units = '&units=imperial';
 var getWeatherIcon = 'http://openweathermap.org/img/wn/';
-var fahrenheitInt;
+var searchHistoryArr = [];
 
 $(document).ready(function() {
   init();
@@ -26,7 +26,7 @@ $(document).ready(function() {
         // also return error if value is not a real city or does not show up on openweathermap
         return;
       } else {
-        // add these to localStorage
+          // do not append the same city twice....
         $('#search-input').val('');
         var newSearch = $('<li>');
         newSearch.addClass('list-group-item');
@@ -34,13 +34,45 @@ $(document).ready(function() {
         $('#search-history').append(newSearch);
         $('#search-history-container').show();
 
+        var searchHistoryObj = {};
+
+        if (searchHistoryArr.length === 0) {
+          searchHistoryObj['city'] = citySearch;
+          searchHistoryArr.push(searchHistoryObj);
+          localStorage.setItem(
+            'searchHistory',
+            JSON.stringify(searchHistoryArr)
+          );
+        } else {
+          for (var i = 0; i < searchHistoryArr.length; i++) {
+            if (citySearch === searchHistoryArr[i].city) {
+              console.log('already here');
+              return;
+            } else {
+              searchHistoryObj['city'] = citySearch;
+              searchHistoryArr.push(searchHistoryObj);
+              localStorage.setItem(
+                'searchHistory',
+                JSON.stringify(searchHistoryArr)
+              );
+            }
+          }
+        }
+
         getWeather(citySearch);
       }
     });
   }
 
   function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+    // make it capitalize multiple word cities
+    return str
+      .toLowerCase()
+      .split(' ')
+      .map(function(word) {
+        return word[0].toUpperCase() + word.substr(1);
+      })
+      .join(' ');
   }
 
   function getWeather(search) {
