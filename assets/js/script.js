@@ -47,17 +47,18 @@ $(document).ready(function() {
             JSON.stringify(searchHistoryArr)
           );
         } else {
-          searchHistoryObj['city'] = citySearch;
-          searchHistoryArr.push(searchHistoryObj);
-          localStorage.setItem(
-            'searchHistory',
-            JSON.stringify(searchHistoryArr)
-          );
-          
           var checkHistory = searchHistoryArr.find(
             ({ city }) => city === citySearch
           );
-          console.log(checkHistory);
+
+          if (checkHistory === undefined) {
+            searchHistoryObj['city'] = citySearch;
+            searchHistoryArr.push(searchHistoryObj);
+            localStorage.setItem(
+              'searchHistory',
+              JSON.stringify(searchHistoryArr)
+            );
+          }
         }
 
         getWeather(citySearch);
