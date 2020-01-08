@@ -258,14 +258,18 @@ $(document).ready(function() {
 
     return (searchHistoryArr = localSearchHistory);
   }
+  
+  function createHistory() {
+    searchHistoryArr.length = 0;
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr));
+  }
 
   function clearHistory() {
     $('#clear-button').on('click', function() {
       $('#search-history').empty();
       $('#search-history-container').hide();
       localStorage.removeItem('searchHistory');
-      searchHistoryArr.length = 0;
-      localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr));
+      createHistory();
     });
   }
 
@@ -276,8 +280,4 @@ $(document).ready(function() {
     });
   }
 
-  function createHistory() {
-    searchHistoryArr.length = 0;
-    localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr));
-  }
 });
