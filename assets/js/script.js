@@ -33,6 +33,7 @@ $(document).ready(function() {
         return;
       } else {
         // do not append the same city twice....
+        // make it overflow or have a max number
         $('#search-input').val('');
         var newSearch = $('<li>');
         newSearch.addClass('list-group-item');
@@ -113,26 +114,24 @@ $(document).ready(function() {
         var uvi = uviResults.value;
         $('#uv-index').html(
           '<b>UV Index: </b>' +
-            '<span class="badge badge-secondary">' +
+            '<span class="badge badge-pill badge-light" id="uvi-badge">' +
             uvi +
             '</span>'
         );
         $('#current-forecast').show();
 
-        // change uvi badge color depending on the value of uvi
-        /* 
+        // DRY this out...
         if (uvi < 3) {
-            green
+            $('#uvi-badge').css('background-color', 'green');
         } else if (uvi < 6) {
-            yellow
+            $('#uvi-badge').css('background-color', 'yellow');
         } else if (uvi < 8) {
-            orange
+            $('#uvi-badge').css('background-color', 'orange');
         } else if (uvi < 11) {
-            red
+            $('#uvi-badge').css('background-color', 'red');
         } else {
-            purple
+            $('#uvi-badge').css('background-color', 'purple');
         }
-        */
       });
 
       var cityName = name;
