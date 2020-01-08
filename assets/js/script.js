@@ -12,6 +12,7 @@ $(document).ready(function() {
   init();
 
   function init() {
+    createHistory();
     search();
     currentLocation();
     $('#weather-container').hide();
@@ -122,15 +123,15 @@ $(document).ready(function() {
 
         // DRY this out...
         if (uvi < 3) {
-            $('#uvi-badge').css('background-color', 'green');
+          $('#uvi-badge').css('background-color', 'green');
         } else if (uvi < 6) {
-            $('#uvi-badge').css('background-color', 'yellow');
+          $('#uvi-badge').css('background-color', 'yellow');
         } else if (uvi < 8) {
-            $('#uvi-badge').css('background-color', 'orange');
+          $('#uvi-badge').css('background-color', 'orange');
         } else if (uvi < 11) {
-            $('#uvi-badge').css('background-color', 'red');
+          $('#uvi-badge').css('background-color', 'red');
         } else {
-            $('#uvi-badge').css('background-color', 'purple');
+          $('#uvi-badge').css('background-color', 'purple');
         }
       });
 
@@ -273,5 +274,10 @@ $(document).ready(function() {
       var cityNameHistory = $(this).text();
       getWeather(cityNameHistory);
     });
+  }
+
+  function createHistory() {
+    searchHistoryArr.length = 0;
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr));
   }
 });
