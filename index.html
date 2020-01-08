@@ -23,7 +23,26 @@
     <div class="h-100">
       <div class="row w-100 h-100">
         <div class="col-md-4 bg-light h-100">
-          <div class="col-md-9">
+          <div class="col-md-9 py-3" id="current-location-container">
+            <h6 class="font-weight-bold">Current Location Forecast:</h6>
+            <div
+              class="card text-white bg-success"
+              id="current-location-weather"
+            >
+              <div class="card-body">
+                <h5 class="card-title" id="current-location"></h5>
+                <div class="weather-image-container">
+                  <img
+                    alt="current-locationweather-image"
+                    id="weather-image-current-location"
+                  />
+                </div>
+                <p class="card-text" id="temp-current-location"></p>
+                <p class="card-text" id="humidity-current-location"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-9" id="city-search-container">
             <label class="font-weight-bold pt-2" for="city-search"
               >Search for a City:</label
             >
@@ -84,7 +103,7 @@
                   <div class="card-body">
                     <h5 class="card-title" id="date-1"></h5>
                     <div class="weather-image-container">
-                      <img alt="weather-image" id="weather-image-1" />
+                      <img alt="day-1-weather-image" id="weather-image-1" />
                     </div>
                     <p class="card-text" id="temp-1"></p>
                     <p class="card-text" id="humidity-1"></p>
@@ -96,7 +115,7 @@
                   <div class="card-body">
                     <h5 class="card-title" id="date-2"></h5>
                     <div class="weather-image-container">
-                      <img alt="weather-image" id="weather-image-2" />
+                      <img alt="day-2-weather-image" id="weather-image-2" />
                     </div>
                     <p class="card-text" id="temp-2"></p>
                     <p class="card-text" id="humidity-2"></p>
@@ -108,7 +127,7 @@
                   <div class="card-body">
                     <h5 class="card-title" id="date-3"></h5>
                     <div class="weather-image-container">
-                      <img alt="weather-image" id="weather-image-3" />
+                      <img alt="day-3-weather-image" id="weather-image-3" />
                     </div>
                     <p class="card-text" id="temp-3"></p>
                     <p class="card-text" id="humidity-3"></p>
@@ -120,7 +139,7 @@
                   <div class="card-body">
                     <h5 class="card-title" id="date-4"></h5>
                     <div class="weather-image-container">
-                      <img alt="weather-image" id="weather-image-4" />
+                      <img alt="day-4-weather-image" id="weather-image-4" />
                     </div>
                     <p class="card-text" id="temp-4"></p>
                     <p class="card-text" id="humidity-4"></p>
@@ -132,7 +151,7 @@
                   <div class="card-body">
                     <h5 class="card-title" id="date-5"></h5>
                     <div class="weather-image-container">
-                      <img alt="weather-image" id="weather-image-5" />
+                      <img alt="day-5-weather-image" id="weather-image-5" />
                     </div>
                     <p class="card-text" id="temp-5"></p>
                     <p class="card-text" id="humidity-5"></p>
