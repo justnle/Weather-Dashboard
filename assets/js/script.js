@@ -116,7 +116,7 @@ $(document).ready(function() {
         var forecastResults = forecastResponse;
         var forecastArr = [];
 
-        for (var i = 4; i < 40; i += 8) {
+        for (var i = 5; i < 40; i += 8) {
           var forecastObj = {};
           var forecastResultsDate = forecastResults.list[i].dt_txt;
           var forecastDate = new Date(forecastResultsDate).toLocaleDateString(
