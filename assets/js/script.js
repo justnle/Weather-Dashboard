@@ -19,7 +19,6 @@ $(document).ready(function() {
     $('#current-location-container').hide();
     displayHistory();
     clearHistory();
-    clickHistory();
   }
 
   function search() {
@@ -245,19 +244,19 @@ $(document).ready(function() {
     var localSearchHistory = JSON.parse(getLocalSearchHistory);
 
     if (getLocalSearchHistory === null) {
-        createHistory();
-        getLocalSearchHistory = localStorage.getItem('searchHistory');
-        localSearchHistory = JSON.parse(getLocalSearchHistory);
+      createHistory();
+      getLocalSearchHistory = localStorage.getItem('searchHistory');
+      localSearchHistory = JSON.parse(getLocalSearchHistory);
     }
-    
+
     for (var i = 0; i < localSearchHistory.length; i++) {
       var historyLi = $('<li>');
       historyLi.addClass('list-group-item');
       historyLi.text(capitalizeFirstLetter(localSearchHistory[i].city));
       $('#search-history').prepend(historyLi);
       $('#search-history-container').show();
-      clickHistory();
     }
+    clickHistory();
 
     return (searchHistoryArr = localSearchHistory);
   }
@@ -277,11 +276,9 @@ $(document).ready(function() {
   }
 
   function clickHistory() {
-    $('#search-history li').on('click', function() {
+    $('#search-history').on('click', 'li', function() {
       var cityNameHistory = $(this).text();
-      console.log(cityNameHistory);
       getWeather(cityNameHistory);
     });
   }
-
 });
