@@ -12,7 +12,6 @@ $(document).ready(function() {
   init();
 
   function init() {
-    createHistory();
     search();
     currentLocation();
     $('#weather-container').hide();
@@ -245,12 +244,19 @@ $(document).ready(function() {
     var getLocalSearchHistory = localStorage.getItem('searchHistory');
     var localSearchHistory = JSON.parse(getLocalSearchHistory);
 
+    if (getLocalSearchHistory === null) {
+        createHistory();
+        getLocalSearchHistory = localStorage.getItem('searchHistory');
+        localSearchHistory = JSON.parse(getLocalSearchHistory);
+    }
+    
     for (var i = 0; i < localSearchHistory.length; i++) {
       var historyLi = $('<li>');
       historyLi.addClass('list-group-item');
       historyLi.text(capitalizeFirstLetter(localSearchHistory[i].city));
       $('#search-history').prepend(historyLi);
       $('#search-history-container').show();
+      clickHistory();
     }
 
     return (searchHistoryArr = localSearchHistory);
@@ -273,6 +279,7 @@ $(document).ready(function() {
   function clickHistory() {
     $('#search-history li').on('click', function() {
       var cityNameHistory = $(this).text();
+      console.log(cityNameHistory);
       getWeather(cityNameHistory);
     });
   }
