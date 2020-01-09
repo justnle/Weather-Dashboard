@@ -24,7 +24,16 @@
       <div class="row h-100">
         <div class="col-md-4 bg-light h-100">
           <div class="col-md-9 py-3" id="current-location-container">
-            <h6 class="font-weight-bold">Current Location Forecast:</h6>
+            <h6 class="font-weight-bold">
+              Current Location Forecast:
+              <button
+                class="btn btn-success btn-sm"
+                id="current-location-button"
+              >
+                <i class="fas fa-map-marker-alt"></i>
+                Get Location
+              </button>
+            </h6>
             <div
               class="card text-white bg-secondary"
               id="current-location-weather"
@@ -96,7 +105,10 @@
               </div>
             </div>
           </div>
-          <div class="row w-100 flex-column pt-3" id="five-day-forecast-container">
+          <div
+            class="row w-100 flex-column pt-3"
+            id="five-day-forecast-container"
+          >
             <div class="row">
               <h4 class="font-weight-bold pl-3">5-Day Forecast:</h4>
             </div>

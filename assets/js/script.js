@@ -13,15 +13,15 @@ $(document).ready(function() {
 
   function init() {
     search();
-    currentLocation();
     $('#current-forecast').hide();
     $('#five-day-forecast-container').hide();
     $('#search-history-container').hide();
-    $('#current-location-container').hide();
+    $('#current-location-weather').hide();
     $('#error-div').hide();
     displayHistory();
     clearHistory();
     clickHistory();
+    currentLocationButton();
   }
 
   function search() {
@@ -156,7 +156,7 @@ $(document).ready(function() {
     });
   }
 
-  function currentLocation() {
+  function getCurrentLocation() {
     function success(position) {
       const currentLat = position.coords.latitude;
       const currentLon = position.coords.longitude;
@@ -194,7 +194,7 @@ $(document).ready(function() {
         );
       });
 
-      $('#current-location-container').show();
+      $('#current-location-weather').show();
     }
 
     function error() {
@@ -208,6 +208,12 @@ $(document).ready(function() {
     } else {
       geoAPI.getCurrentPosition(success, error);
     }
+  }
+
+  function currentLocationButton() {
+    $('#current-location-button').on('click', function() {
+      getCurrentLocation();
+    });
   }
 
   function storeHistory(citySearchName) {
