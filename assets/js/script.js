@@ -222,10 +222,25 @@ $(document).ready(function() {
         ({ city }) => city === citySearchName
       );
 
-      if (checkHistory === undefined) {
-        searchHistoryObj['city'] = citySearchName;
-        searchHistoryArr.push(searchHistoryObj);
-        localStorage.setItem('searchHistory', JSON.stringify(searchHistoryArr));
+      if (searchHistoryArr.length < 5) {
+        if (checkHistory === undefined) {
+          searchHistoryObj['city'] = citySearchName;
+          searchHistoryArr.push(searchHistoryObj);
+          localStorage.setItem(
+            'searchHistory',
+            JSON.stringify(searchHistoryArr)
+          );
+        }
+      } else {
+        if (checkHistory === undefined) {
+          searchHistoryArr.shift();
+          searchHistoryObj['city'] = citySearchName;
+          searchHistoryArr.push(searchHistoryObj);
+          localStorage.setItem(
+            'searchHistory',
+            JSON.stringify(searchHistoryArr)
+          );
+        }
       }
     }
     $('#search-history').empty();
