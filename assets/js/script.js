@@ -11,6 +11,14 @@ var searchHistoryArr = [];
 $(document).ready(function() {
   init();
 
+  //   $(document).ajaxError(function(event, thrownError) {
+  //       errorCode = thrownError.responseJSON.cod;
+  //       errorMessage = thrownError.responseJSON.message;
+  //       console.log(errorCode);
+  //       console.log(errorMessage);
+  //       console.log(event);
+  //   });
+
   function init() {
     search();
     currentLocation();
@@ -31,6 +39,7 @@ $(document).ready(function() {
         // also return error if value is not a real city or does not show up on openweathermap
         return;
       } else {
+        console.log(event.type);
         // do not append the same city twice....
         // make it overflow or have a max number
         $('#search-input').val('');
@@ -84,7 +93,12 @@ $(document).ready(function() {
 
     $.ajax({
       url: queryURL,
-      method: 'GET'
+      method: 'GET',
+      statusCode: {
+        404: function() {
+          alert('not found');
+        }
+      }
     }).then(function(response) {
       var results = response;
       var name = results.name;
