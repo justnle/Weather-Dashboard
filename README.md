@@ -27,14 +27,14 @@ This page was built using the API created and provided by [Open Weather](https:/
 
 The geolocation API is built into the [Chrome](https://www.google.com/chrome/) web browser.
 
+[https://getbootstrap.com/](https://getbootstrap.com/) - Bootstrap framework <br>
+[https://fontawesome.com/](https://fontawesome.com/) - Fontawesome framework <br>
+[https://jquery.com/](https://jquery.com/) - jQuery library <br>
+
 # License
 Licensed under the [MIT](https://github.com/twopcz/HW-6/blob/master/LICENSE.txt) license.
 
 # References
-[https://openweathermap.org/](https://openweathermap.org/) - Weather API used <br>
-[https://getbootstrap.com/](https://getbootstrap.com/) - Bootstrap library <br>
-[https://jquery.com/](https://jquery.com/) - jQuery library <br>
-[https://fontawesome.com/](https://fontawesome.com/) - Free Icons! <br>
 [https://developer.mozilla.org/en-US/](https://developer.mozilla.org/en-US/) - Various documentation <br>
 [https://stackoverflow.com/](https://stackoverflow.com) - Questions & Answers <br>
 [https://en.wikipedia.org/](https://en.wikipedia.org/wiki/Ultraviolet_index) - Ultraviolet Index Information
