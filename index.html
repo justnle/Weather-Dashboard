@@ -21,64 +21,75 @@
     </nav>
 
     <div class="container-fluid h-100">
-      <div class="row h-100">
-        <div class="col-md-4 bg-light h-100">
-          <div class="col-md-9 py-3" id="current-location-container">
-            <h6 class="font-weight-bold">
-              Current Location Forecast:
-              <button
-                class="btn btn-success btn-sm"
-                id="current-location-button"
-              >
-                <i class="fas fa-map-marker-alt"></i>
-                Get Location
-              </button>
-            </h6>
-            <div
-              class="card text-white bg-secondary"
-              id="current-location-weather"
-            >
-              <div class="card-body">
-                <h5 class="card-title" id="current-location"></h5>
-                <div class="weather-image-container">
-                  <img
-                    alt="current-locationweather-image"
-                    id="weather-image-current-location"
-                  />
-                </div>
-                <p class="card-text" id="temp-current-location"></p>
-                <p class="card-text" id="humidity-current-location"></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-9" id="city-search-container">
-            <label class="font-weight-bold pt-2" for="city-search"
-              >Search for a City:</label
-            >
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="search-input" />
-              <div class="input-group-append">
+      <div class="row min-vh-100">
+        <div class="col-md-4 bg-light">
+          <div class="row">
+            <div class="col-md-12 py-3" id="current-location-container">
+              <div class="d-flex align-text-middle justify-content-between">
+                <h6 class="mt-2 font-weight-bold">
+                  Current Location Forecast:
+                </h6>
                 <button
-                  class="btn btn-primary"
-                  type="button"
-                  id="search-button"
+                  class="btn btn-success btn-sm"
+                  id="current-location-button"
                 >
-                  <i class="fas fa-search"></i>
+                  <i class="fas fa-map-marker-alt"></i>
+                  Get Location
                 </button>
               </div>
+              <div
+                class="card text-white bg-secondary mt-3"
+                id="current-location-weather"
+              >
+                <div class="card-body pt-2">
+                  <h5 class="card-title" id="current-location"></h5>
+                  <div class="weather-image-container">
+                    <img
+                      alt="current-locationweather-image"
+                      id="weather-image-current-location"
+                    />
+                  </div>
+                  <p class="card-text" id="temp-current-location"></p>
+                  <p class="card-text" id="humidity-current-location"></p>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-md-12 h-100 pb-3" id="search-history-container">
-            <div class="card w-100">
-              <ul class="list-group list-group-flush" id="search-history"></ul>
+          <div class="row">
+            <div class="col-lg-8" id="city-search-container">
+              <label class="font-weight-bold pt-2" for="city-search"
+                >Search for a City:</label
+              >
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" id="search-input" />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-primary"
+                    type="button"
+                    id="search-button"
+                  >
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div
-              class="d-flex justify-content-end pt-3"
-              id="clear-button-container"
-            >
-              <button class="btn btn-danger" id="clear-button">
-                Clear History
-              </button>
+          </div>
+          <div class="row">
+            <div class="col-md-12 h-100 pb-3" id="search-history-container">
+              <div class="card w-100">
+                <ul
+                  class="list-group list-group-flush"
+                  id="search-history"
+                ></ul>
+              </div>
+              <div
+                class="d-flex justify-content-end pt-3"
+                id="clear-button-container"
+              >
+                <button class="btn btn-danger" id="clear-button">
+                  Clear History
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -87,7 +98,7 @@
             <h2 class="font-weight-bold" id="error">City not found.</h2>
           </div>
           <div class="row pt-3" id="current-forecast">
-            <div class="col-md-10 border">
+            <div class="col-md-12 border">
               <div
                 class="d-flex align-items-center pt-4"
                 id="city-name-container"
@@ -105,15 +116,12 @@
               </div>
             </div>
           </div>
-          <div
-            class="row w-100 flex-column pt-3"
-            id="five-day-forecast-container"
-          >
-            <div class="row">
-              <h4 class="font-weight-bold pl-3">5-Day Forecast:</h4>
+          <div class="row flex-column pt-3" id="five-day-forecast-container">
+            <div class="row no-gutters">
+              <h4 class="font-weight-bold">5-Day Forecast:</h4>
             </div>
-            <div class="row w-100">
-              <div class="col-lg-2 pb-2">
+            <div class="row no-gutters">
+              <div class="col-lg mx-1 pb-2">
                 <div class="card text-white bg-primary" id="day-1">
                   <div class="card-body">
                     <h5 class="card-title" id="date-1"></h5>
@@ -125,7 +133,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-2 pb-2">
+              <div class="col-lg mx-1 pb-2">
                 <div class="card text-white bg-primary" id="day-2">
                   <div class="card-body">
                     <h5 class="card-title" id="date-2"></h5>
@@ -137,7 +145,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-2 pb-2">
+              <div class="col-lg mx-1 pb-2">
                 <div class="card text-white bg-primary" id="day-3">
                   <div class="card-body">
                     <h5 class="card-title" id="date-3"></h5>
@@ -149,7 +157,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-2 pb-2">
+              <div class="col-lg mx-1 pb-2">
                 <div class="card text-white bg-primary" id="day-4">
                   <div class="card-body">
                     <h5 class="card-title" id="date-4"></h5>
@@ -161,7 +169,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-2 pb-2">
+              <div class="col-lg mx-1 pb-2">
                 <div class="card text-white bg-primary" id="day-5">
                   <div class="card-body">
                     <h5 class="card-title" id="date-5"></h5>
